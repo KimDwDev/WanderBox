@@ -1,3 +1,6 @@
+// css
+import "./App.css"
+
 // 기본 패키지
 import { BrowserRouter as Routers, Routes, Route } from "react-router-dom"
 

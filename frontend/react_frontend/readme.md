@@ -4,6 +4,9 @@
   - 초기 설정
   - navbar, main, signup, footer폴더 완성
   - navbar에 navbartop, navbarleft, navbarmid 폴더 완성
+  - App.css 설정 
+
+
 
 # 공부 
 
