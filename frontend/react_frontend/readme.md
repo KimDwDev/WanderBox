@@ -8,6 +8,9 @@
 
 2. 0602
   - Navbar container 폴더 완성
+  - main logo 완성
+  - Navbar Top에 기본적인 css 완성
+  - 
 
 # 공부 
 

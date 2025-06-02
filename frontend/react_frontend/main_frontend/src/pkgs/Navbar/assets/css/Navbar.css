@@ -1,0 +1,8 @@
+/* 전체 네브바 컨테이너 */
+.navbar-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* 상단, 중간, 왼쪽 요소 간 여백 */
+  box-sizing: border-box;
+}
