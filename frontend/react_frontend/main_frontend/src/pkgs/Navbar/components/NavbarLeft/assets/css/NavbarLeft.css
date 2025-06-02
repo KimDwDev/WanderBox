@@ -1,0 +1,27 @@
+.navbarleft-container {
+  /* 1) 너비 설정 */
+  width: 240px;                  
+  /* 원한다면 200px, 260px 등 프로젝트에 맞게 조정하세요 */
+
+  /* 2) 높이: Top+Mid+gaps를 제외한 나머지 뷰포트 높이 */
+  height: calc(100vh - 212px);
+  /* 212px = Top(128px) + Mid(60px) + Top↔Mid gap(12px) + Mid↔Left gap(12px) */
+
+  /* 3) 배경색: Mid 바와 동일하거나, 사이드바 전용 색상으로 지정 */
+  background-color: #005f7f;
+  /* Mid 바의 배경이 #005f7f였으므로, 통일감을 주기 위해 같은 색을 사용했습니다.
+     필요하면 #004f6f, #e0e0e0 등 프로젝트 컬러 팔레트에 따라 변경해 주세요. */
+
+  /* 4) 사이드바 내부 여백 */
+  padding: 16px;                 
+  /* 위·아래 16px, 좌·우 16px. 필요에 따라 조정 */
+
+  /* 5) 박스 크기 계산 시 패딩까지 포함 */
+  box-sizing: border-box;
+
+  /* 6) 내부가 넘칠 경우 세로 스크롤 출현 */
+  overflow-y: auto;             
+
+  /* 7) 텍스트/아이콘 색상(하얀색) */
+  color: #ffffff;                
+}

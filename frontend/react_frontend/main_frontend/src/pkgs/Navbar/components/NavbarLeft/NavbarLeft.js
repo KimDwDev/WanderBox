@@ -1,4 +1,5 @@
-
+// css 파일
+import "./assets/css/NavbarLeft.css"
 
 export const NavbarLeft = () => {
   return (

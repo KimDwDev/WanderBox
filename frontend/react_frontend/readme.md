@@ -11,6 +11,7 @@
   - main logo 완성
   - Navbar Top에 기본적인 css 완성
   - Navbar Top에 로고와 기능을 완성
+  - Navbar에 왼쪽과 중간에 기틀을 마련
 
 # 공부 
 
