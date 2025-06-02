@@ -1,0 +1,315 @@
+/* 가장 메인이 되는 css */
+.navbar-left-login-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;       /* 하위 3개 컴포넌트 사이의 간격 (16px) */
+  width: 100%;     /* 부모(사이드바) 너비를 꽉 채움 */
+  box-sizing: border-box;
+}
+
+/* 로그인과 관련된 css */
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   1) 최상위 컨테이너: navbar-left-login-main-container
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-main-container {
+  /* 배경, 테두리, 모서리 둥글게 */
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+
+  /* 내부 여백 */
+  padding: 16px;
+  box-sizing: border-box;
+
+  /* 세로 방향으로 요소 배치 */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px; /* 하위 요소 간 간격 */
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   2) ID 저장 체크박스 영역: login-save-id
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-main-container .login-save-id {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 체크박스와 레이블 간 간격 */
+}
+
+.navbar-left-login-main-container .save-id-checkbox {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.navbar-left-login-main-container .save-id-label {
+  font-size: 14px;
+  color: #333333;
+  cursor: pointer;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   3) 이메일/비밀번호 입력 영역 래퍼: email-password-div-box
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-main-container .email-password-div-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* 입력란 간격 */
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   4) 이메일 입력 박스: email-div-box
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-main-container .email-div-box {
+  width: 100%;
+}
+
+.navbar-left-login-main-container .email-input {
+  width: 100%;
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333333;
+  box-sizing: border-box;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   5) 비밀번호 입력 박스: password-div-box
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-main-container .password-div-box {
+  width: 100%;
+}
+
+.navbar-left-login-main-container .password-input {
+  width: 100%;
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333333;
+  box-sizing: border-box;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   6) 로그인 버튼: login-button
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-main-container .login-button {
+  width: 100%;
+  height: 44px;
+  background-color: #cccccc; /* 연한 회색 */
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #222222;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.navbar-left-login-main-container .login-button:hover {
+  background-color: #b3b3b3; /* 호버 시 살짝 진하게 */
+}
+
+/* 이메일 비밀번호 찾기 회원가입 버튼 */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   1) 최상위 컨테이너
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-searchandsignuppannel-container {
+  /* 흰색 배경, 테두리, 둥근 모서리 */
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+
+  /* 내부 여백 */
+  padding: 12px;
+  box-sizing: border-box;
+
+  /* 세로 방향으로 배치, 요소 사이 간격 유지 */
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* login-search-links와 signup-button 사이 간격 */
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   2) 아이디/비밀번호 찾기 버튼 그룹
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-searchandsignuppannel-container .login-search-links {
+  display: flex;
+  gap: 8px; /* 두 버튼 사이 간격 */
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   3) 이메일 찾기 버튼
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-searchandsignuppannel-container .email-search-button {
+  flex: 1;                              /* 가로로 균등 분할 */
+  height: 36px;
+  background-color: #f0f0f0;            /* 연한 회색 배경 */
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #333333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.navbar-left-login-searchandsignuppannel-container .email-search-button:hover {
+  background-color: #e0e0e0;            /* 호버 시 조금 진한 회색 */
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   4) 비밀번호 찾기 버튼
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-searchandsignuppannel-container .password-search-button {
+  flex: 1;                              /* 가로로 균등 분할 */
+  height: 36px;
+  background-color: #f0f0f0;            /* 연한 회색 배경 */
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 11px;
+  color: #333333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.navbar-left-login-searchandsignuppannel-container .password-search-button:hover {
+  background-color: #e0e0e0;            /* 호버 시 조금 진한 회색 */
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   5) 회원가입 버튼
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-searchandsignuppannel-container .signup-button {
+  width: 100%;
+  height: 40px;
+  background-color: #ffffff;            /* 흰색 배경 */
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #222222;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.navbar-left-login-searchandsignuppannel-container .signup-button:hover {
+  background-color: #f5f5f5;            /* 호버 시 연한 회색 배경 */
+}
+
+/* 간편 로그인과 관련된 css */
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   1) 최상위 컨테이너: 간편 로그인 전체 박스
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-simplelogin-container {
+  background-color: #ffffff;     /* 흰색 배경 */
+  border: 1px solid #cccccc;     /* 연한 회색 테두리 */
+  border-radius: 4px;            /* 모서리 둥글게 */
+  padding: 12px;                 /* 내부 여백 */
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;                     /* 텍스트와 버튼 그룹 사이 간격 */
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   2) 간편 로그인 문구 박스
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-simplelogin-container .simple-login-text {
+  background-color: #f0f0f0;     /* 연한 회색 배경 */
+  color: #333333;                /* 짙은 회색 텍스트 */
+  font-size: 12px;
+  text-align: center;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   3) 소셜 로그인 버튼 그룹 (가로 배치)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-simplelogin-container .simple-login-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;                      /* 버튼들 사이 간격 */
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   4) 구글 로그인 버튼
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-simplelogin-container .social-button-google {
+  display: flex;
+  align-items: center;           /* 아이콘과 텍스트 수직 중앙 정렬 */
+  gap: 8px;                      /* 아이콘과 텍스트 사이 여백 */
+  background-color: #ffffff;     /* 흰색 배경 */
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 8px 12px;             /* 위아래 8px, 좌우 12px */
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.navbar-left-login-simplelogin-container .social-button-google:hover {
+  background-color: #f5f5f5;     /* 호버 시 배경 연하게 */
+  transform: translateY(-1px);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   5) 구글 로고 이미지
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-simplelogin-container .google-logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   6) 구글 텍스트
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-simplelogin-container .google-text {
+  font-size: 14px;
+  color: #333333;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   7) 애플 로그인 버튼
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-simplelogin-container .social-button-apple {
+  display: flex;
+  align-items: center;           /* 아이콘과 텍스트 수직 중앙 정렬 */
+  gap: 8px;                      /* 아이콘과 텍스트 사이 여백 */
+  background-color: #000000;     /* 검은색 배경 */
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;             /* 위아래 8px, 좌우 12px */
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.navbar-left-login-simplelogin-container .social-button-apple:hover {
+  opacity: 0.9;                 /* 호버 시 살짝 투명도 변화 */
+  transform: translateY(-1px);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   8) 애플 로고 이미지
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-simplelogin-container .apple-logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  filter: invert(100%);         /* 흰색 아이콘을 사용할 경우 */
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   9) 애플 텍스트
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.navbar-left-login-simplelogin-container .apple-text {
+  font-size: 14px;
+  color: #ffffff;               /* 검은색 배경 위 흰색 텍스트 */
+}
