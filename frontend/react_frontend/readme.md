@@ -6,7 +6,8 @@
   - navbar에 navbartop, navbarleft, navbarmid 폴더 완성
   - App.css 설정 
 
-
+2. 0602
+  - Navbar container 폴더 완성
 
 # 공부 
 
