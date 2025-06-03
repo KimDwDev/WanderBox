@@ -14,6 +14,9 @@
   - Navbar에 왼쪽과 중간에 기틀을 마련
   - Navbar에 왼쪽에 css와 기타 로고들 완성
 
+3. 0603
+  - NavbarLogin에 signup으로 가는 로직 생성
+
 # 공부 
 
 
