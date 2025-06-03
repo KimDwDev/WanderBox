@@ -1,12 +1,12 @@
 // 모듈들
 import { useNavbarLeftLoginHookGoSignUpBtn } from "../hooks"
 
-export const NavbarLeftLoginSearchAndSignUpPannel = () => {
+export const MainLeftLoginSearchAndSignUpPannel = () => {
 
   const { clickSignUpBtnHook } = useNavbarLeftLoginHookGoSignUpBtn()
 
   return (
-    <div className = "navbar-left-login-searchandsignuppannel-container">
+    <div className = "main-left-login-searchandsignuppannel-container">
 
       {/* 아이디랑 비밀번호 찾기 */}
       <div className = "login-search-links">

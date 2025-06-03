@@ -1,0 +1,22 @@
+.navbarleft-container {
+  /*  1) 고정 너비 */
+  width: 240px;                     
+
+  /* 높이는 부모(.app-container)와 같아집니다. (별도 설정 생략 가능) */
+  /* height: 100%; */
+
+  /*  2) 배경색 (Mid와 동일하게) */
+  background-color: #005f7f;        
+
+  /*  3) 내부 여백 */
+  padding: 16px;                    
+
+  /*  4) 박스 크기 계산 시 padding 포함 */
+  box-sizing: border-box;
+
+  /*  5) 콘텐츠가 길어지면 세로 스크롤 */
+  overflow-y: auto;                 
+
+  /*  6) 텍스트/아이콘 색상 */
+  color: #ffffff;                   
+}

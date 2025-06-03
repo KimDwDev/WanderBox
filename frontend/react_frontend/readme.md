@@ -16,6 +16,8 @@
 
 3. 0603
   - NavbarLogin에 signup으로 가는 로직 생성
+  - NavbarLeft -> MainLeft로 교정 (css를 위해서)
+  - app-container를 만들고 이에 대한 범위를 지정한다.
 
 # 공부 
 

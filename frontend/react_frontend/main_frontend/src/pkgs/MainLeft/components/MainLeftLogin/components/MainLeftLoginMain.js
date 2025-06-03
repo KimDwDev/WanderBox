@@ -1,14 +1,14 @@
 
 
-export const NavbarLeftLoginMain = () => {
+export const MainLeftLoginMain = () => {
   return (
-    <div className = "navbar-left-login-main-container">
+    <div className = "main-left-login-main-container">
 
       {/* ID 저장 체크 박스 */}
       <div className = "login-save-id">
 
-        <input type = "checkbox" id = "navbar-left-login-main-saveId" className = "save-id-checkbox" />
-        <label className = "save-id-label" htmlFor = "navbar-left-login-main-saveId">
+        <input type = "checkbox" id = "main-left-login-main-saveId" className = "save-id-checkbox" />
+        <label className = "save-id-label" htmlFor = "main-left-login-main-saveId">
           ID 저장
         </label>
 

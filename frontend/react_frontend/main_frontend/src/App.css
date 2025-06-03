@@ -15,3 +15,37 @@
 .App > * {
   width: 100%;                /* 내부 요소가 컨테이너 너비에 맞춰 확장 */
 }
+
+.app-container {
+  display: flex;
+  width: 100%;
+
+  /* 높이: 상단 Navbar(212px)를 뺀 만큼 화면 꽉 채우기 */
+  height: calc(100vh - 212px);
+
+  /* NavbarMid 바로 아래 여백(12px) 필요하다면 아래 한 줄만 남기세요 */
+  margin-top: 12px;
+
+  /* → 좌우 패딩을 제거했습니다! ← */
+  /* padding: 0 24px; */
+
+  gap: 12px;            /* 좌측 사이드바 ↔ 우측 메인 간격 */
+  box-sizing: border-box;
+}
+
+.app-contents {
+  flex: 1;
+  background-color: #ffffff; /* 혹은 원하는 배경 */
+  padding: 16px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.app-navbar {
+  width: 240px;
+  background-color: #005f7f;
+  padding: 16px;
+  box-sizing: border-box;
+  overflow-y: auto;
+  color: #ffffff;
+}

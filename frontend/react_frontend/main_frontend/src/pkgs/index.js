@@ -1,4 +1,5 @@
 export * from "./Navbar/Navbar"
+export * from "./MainLeft/MainLeft"
 export * from "./Main/Main"
 export * from "./SignUp/SignUp"
 export * from "./Footer/Footer"

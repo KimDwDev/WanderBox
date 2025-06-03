@@ -1,6 +1,6 @@
 
 
-export const NavbarLeftLoginSimpleLogin = () => {
+export const MainLeftLoginSimpleLogin = () => {
 
   // 애플과 구글 로고 가져오기
   const aws_s3_bucket_name = process.env.REACT_APP_AWS_S3_BUCKET
@@ -15,7 +15,7 @@ export const NavbarLeftLoginSimpleLogin = () => {
   const apple_logo = `https://${aws_s3_bucket_name}.s3.${aws_s3_region_name}.amazonaws.com/${apple_logo_name}`
 
   return (
-    <div className = "navbar-left-login-simplelogin-container">
+    <div className = "main-left-login-simplelogin-container">
 
       {/* 간편하게 로그인 하라는 문구가 있음 */}
       <div className = "simple-login-text">
