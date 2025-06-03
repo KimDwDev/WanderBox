@@ -19,6 +19,7 @@
   - NavbarLeft -> MainLeft로 교정 (css를 위해서)
   - app-container를 만들고 이에 대한 범위를 지정한다.
   - 회원가입과 관련된 css와 html파일 완성
+  - Footer 페이지 완성
 
 # 공부 
 
