@@ -1,3 +1,10 @@
 # 프론트엔드
 frontend/react_frontend/main_frontend/node_modules
 frontend/react_frontend/main_frontend/.env
+frontend/react_frontend/main_frontend/build
+
+# 백엔드 (nest js)
+backend/node_backend/main_backend/node_modules
+backend/node_backend/main_backend/.env
+backend/node_backend/main_backend/dist
+backend/node_backend/main_backend/build
