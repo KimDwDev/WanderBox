@@ -5,6 +5,8 @@ import { PoolClient } from "pg"
 import { ConfigService } from "@nestjs/config";
 
 import * as argon from "argon2"
+import * as uuid from "uuid"
+import { UUID } from "crypto";
 
 @Injectable()
 export class AuthLoginService {
@@ -18,8 +20,8 @@ export class AuthLoginService {
     const client : PoolClient = await pool.connect()
 
     // 초기 설정
-    const user : {id : number, email : string, password : string, nickname : string} = {
-      id : 0,
+    const user : {user_id : UUID, email : string, password : string, nickname : string} = {
+      user_id : uuid.NIL,
       email : "",
       password : "",
       nickname : ""
@@ -75,10 +77,10 @@ export class AuthLoginService {
   }
 
   // 이메일 로직 함수
-  async AuthLoginMainCheckEmailFunc(client : PoolClient, email : string, user : { id : number,  email : string, password : string, nickname : string }) : Promise<boolean> {
+  async AuthLoginMainCheckEmailFunc(client : PoolClient, email : string, user : { user_id : UUID,  email : string, password : string, nickname : string }) : Promise<boolean> {
 
-    const { rows } = await client.query<{ id : number, email : string, hash : string, nickname : string }>(`
-      SELECT id, email, hash, nickname FROM ${this.config.get<string>("NEST_APP_DATABASE_USER_TABLE")}
+    const { rows } = await client.query<{ user_id : UUID, email : string, hash : string, nickname : string }>(`
+      SELECT user_id, email, hash, nickname FROM ${this.config.get<string>("NEST_APP_DATABASE_USER_TABLE")}
       WHERE email = $1
       `, [ email ])
 
@@ -86,7 +88,7 @@ export class AuthLoginService {
       return false
     }
 
-    user.id = rows[0].id
+    user.user_id = rows[0].user_id
     user.email = rows[0].email
     user.password = String(rows[0].hash)
     user.nickname = rows[0].nickname
