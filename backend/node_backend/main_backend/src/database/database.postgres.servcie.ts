@@ -1,6 +1,6 @@
 import { Injectable, Logger, OnModuleDestroy, OnModuleInit } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
-import { Pool } from "pg"
+import { Pool, Client } from "pg"
 
 @Injectable()
 export class DatabaseService implements OnModuleInit, OnModuleDestroy {
@@ -20,13 +20,17 @@ export class DatabaseService implements OnModuleInit, OnModuleDestroy {
       password : this.config.get<string>("NEST_APP_DATABASE_PASSWORD"),
       database : this.config.get<string>("NEST_APP_DATABASE_NAME"),
     })
+
+    // connect가 연결 될때 마다 스키마 설정 
+    this.pool.on("connect", (client : Client) => {
+      client.query(`SET search_path TO ${this.config.get("NEST_APP_DATABASE_SCHEMA")}`)
+    })
     
     // 에러 상황 확인
     this.pool.on("error", (err : Error) => {
       this.log.error(`에러 발생: 에러내용 ${err}`)
     })
 
-    await this.pool.query(`SET search_path TO ${this.config.get("NEST_APP_DATABASE_SCHEMA")}`)
   }
 
   async onModuleDestroy() {
