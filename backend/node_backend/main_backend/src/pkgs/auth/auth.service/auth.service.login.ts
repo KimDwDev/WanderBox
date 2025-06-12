@@ -1,19 +1,21 @@
 import { HttpException, HttpStatus, Injectable, Logger } from "@nestjs/common";
 import { DatabaseService } from "src/database";
-import { DtoAuthLoginMain } from "src/dtos";
+import { DtoAuthLoginMain, Payload, Sub } from "src/dtos";
 import { PoolClient } from "pg"
 import { ConfigService } from "@nestjs/config";
 
 import * as argon from "argon2"
 import * as uuid from "uuid"
 import { UUID } from "crypto";
+import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
 export class AuthLoginService {
-  constructor(private database : DatabaseService, private config : ConfigService) {}
+  constructor(private database : DatabaseService, private config : ConfigService, private jwt : JwtService) {}
   private logger = new Logger
 
-  async AuthLoginMainService(dto : DtoAuthLoginMain) : Promise<string> {
+  // computer_number, access_token 배출
+  async AuthLoginMainService(dto : DtoAuthLoginMain) : Promise<string[]> {
 
     // 데이터 베이스 꺼내기 
     const pool = this.database.GetClient()
@@ -57,11 +59,17 @@ export class AuthLoginService {
       }
 
       // JWT 토큰화 
+      const tokens = await this.AuthLoginMainMakeJwtFunc(user.user_id, user.email, user.nickname)
+      
+      // 유저 정보 업데이트
+      const [ computer_number, access_token ] = await this.AuthLoginMainUpdateUserFunc(client, user.user_id, tokens)
 
       await client.query("COMMIT")
 
-    } catch (err) {
+      return [ computer_number, access_token ]
 
+    } catch (err) {
+      this.logger.log(`시스템 오류: ${err}`)
       try {
         await client.query("ROLLBACK")
       } catch (roolback_err) {
@@ -71,9 +79,6 @@ export class AuthLoginService {
     } finally {
       client.release()
     }
-
-
-    return "로그인 되었습니다."
   }
 
   // 이메일 로직 함수
@@ -94,6 +99,81 @@ export class AuthLoginService {
     user.nickname = rows[0].nickname
 
     return true
+  }
+
+  // jwt 토큰화
+  async AuthLoginMainMakeJwtFunc(user_id : UUID, email : string, nickname : string) : Promise<string[]> {
+
+    // payload 제작
+    const payload : Payload = {
+      user_id,
+      sub : {
+        email,
+        nickname
+      }
+    }
+
+    // 토큰화 하기
+    const secret_jwt_box : string[] = [ this.config.get<string>("NEST_APP_JWT_ACCESS_TOKEN"), this.config.get<string>("NEST_APP_JWT_REFRESH_TOKEN") ]
+    const jwt_time_box : string[] = [ this.config.get<string>("NEST_APP_JWR_ACCESS_TIME"), this.config.get<string>("NEST_APP_JWT_REFRESH_TIME")  ]
+
+    const MakeJwtFunc : Promise<string>[] = secret_jwt_box.map(async(secret, idx) => {
+      try{
+        const token = await this.jwt.signAsync(payload, {
+          secret,
+          expiresIn : jwt_time_box[idx]
+      })
+        return token}
+      catch (err) {
+        throw new HttpException({
+          message : "JWT토큰을 생성하는데 오류가 발생했습니다.",
+          status : HttpStatus.INTERNAL_SERVER_ERROR,
+        }, HttpStatus.INTERNAL_SERVER_ERROR, {
+          cause : `시스템 오류: JWT토큰을 만드는데 오류 발생 ${err}`
+        })
+      }
+    })
+
+    const tokens = await Promise.all(MakeJwtFunc)
+
+    return tokens
+
+  }
+
+  // 유저 정보 업데이트
+  async AuthLoginMainUpdateUserFunc(client : PoolClient, user_id : UUID, tokens : string[]) : Promise<string[]> {
+
+    // uuid 생성
+    const computer_number = uuid.v4()
+
+    // 정보 부터 업데이트
+    try {
+        await client.query(`
+        INSERT INTO ${this.config.get<string>("NEST_APP_DATABASE_USER_AUTH_TABLE")}
+        (user_id, access_token, refresh_token, computer_number)
+        VALUES
+        ($1, $2, $3, $4) 
+        ON CONFLICT (user_id)
+        DO UPDATE 
+        SET
+          access_token = EXCLUDED.access_token,
+          refresh_token = EXCLUDED.refresh_token,
+          computer_number = EXCLUDED.computer_number
+        `,
+        [user_id, ...tokens, computer_number ])
+    } catch (err) {
+        this.logger.log(`시스템 오류: ${err}`)
+        throw new HttpException({
+          message : "데이터 베이스에 유저 정보를 업데이트 하는데 오류가 발생했습니다.",
+          status : HttpStatus.INTERNAL_SERVER_ERROR,
+        }, HttpStatus.INTERNAL_SERVER_ERROR, {
+        cause : "시스템 오류: 데이터 베이스에 정보를 업데이트 하는데 오류가 발생했습니다."
+        })
+
+    }
+
+    // access_token은 httpOnly token으로 보내야 하고 computer_number는 클라이언트에게 보내야 하기 때문에.
+    return [computer_number, tokens[0]]
   }
 
 }
