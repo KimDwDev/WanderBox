@@ -21,6 +21,10 @@
   - 회원가입과 관련된 css와 html파일 완성
   - Footer 페이지 완성
 
+4. 0613
+  - SignUpToggle만들고 기존의 SignUpBottom을 토글로 변환
+
+
 # 공부 
 
 

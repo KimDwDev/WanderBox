@@ -1,4 +1,5 @@
 export * from "./SignUpTop"
 export * from "./SignUpMid"
 export * from "./SignUpMain"
+export * from "./SignUpBottom"
 export * from "./SignUpToggle"

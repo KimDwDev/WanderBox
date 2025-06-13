@@ -240,7 +240,7 @@
 /* ─────────────────────────────────────────────
    1) SignUpToggle 전체 컨테이너
 ──────────────────────────────────────────── */
-.signup-toggle-container {
+.signup-bottom-container {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -252,18 +252,18 @@
 /* ─────────────────────────────────────────────
    2) “전체 동의” 체크박스 행
 ──────────────────────────────────────────── */
-.signup-toggle-container .checkbox-row {
+.signup-bottom-container .checkbox-row {
   display: flex;
   align-items: center;
   gap: 8px;             /* 체크박스와 레이블 사이 간격 */
 }
 
-.signup-toggle-container .checkbox-row input[type="checkbox"] {
+.signup-bottom-container .checkbox-row input[type="checkbox"] {
   width: 16px;
   height: 16px;
 }
 
-.signup-toggle-container .checkbox-row label {
+.signup-bottom-container .checkbox-row label {
   font-size: 0.95rem;
   color: #333333;
 }
@@ -271,7 +271,7 @@
 /* ─────────────────────────────────────────────
    3) 부분 동의(세부 약관) 영역 래퍼
 ──────────────────────────────────────────── */
-.signup-toggle-container .part-checkbox-div {
+.signup-bottom-container .part-checkbox-div {
   display: flex;
   flex-direction: column;
   gap: 12px;            /* 세부 약관 항목 사이 간격 */
@@ -282,20 +282,20 @@
 /* ─────────────────────────────────────────────
    4) 세부 약관 각각의 체크박스 행
 ──────────────────────────────────────────── */
-.signup-toggle-container .part-checkbox-row {
+.signup-bottom-container .part-checkbox-row {
   display: flex;
   align-items: center;
   gap: 8px;             /* 체크박스와 레이블 사이 간격 */
 }
 
 /* 체크박스 크기 */
-.signup-toggle-container .part-checkbox-row input[type="checkbox"] {
+.signup-bottom-container .part-checkbox-row input[type="checkbox"] {
   width: 16px;
   height: 16px;
 }
 
 /* 라벨: flex:1을 주면 “보기 >” 버튼이 오른쪽 끝으로 밀림 */
-.signup-toggle-container .part-checkbox-row label {
+.signup-bottom-container .part-checkbox-row label {
   flex: 1;
   font-size: 0.93rem;
   color: #333333;
@@ -304,7 +304,7 @@
 /* ─────────────────────────────────────────────
    5) “보기 >” 버튼 스타일
 ──────────────────────────────────────────── */
-.signup-toggle-container .part-checkbox-row .view-btn {
+.signup-bottom-container .part-checkbox-row .view-btn {
   background-color: transparent;
   border: none;
   color: #005f7f;       /* 파란색 텍스트 */
@@ -314,7 +314,7 @@
 }
 
 /* 버튼 눌렀을 때 약간 흐려지는 효과 (선택 사항) */
-.signup-toggle-container .part-checkbox-row .view-btn:active {
+.signup-bottom-container .part-checkbox-row .view-btn:active {
   opacity: 0.7;
 }
 
