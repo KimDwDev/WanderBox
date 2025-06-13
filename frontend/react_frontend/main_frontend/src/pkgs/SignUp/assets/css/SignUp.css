@@ -107,6 +107,13 @@
   column-gap: 16px;   /* 열(column) 간 가로 간격 */
 }
 
+.signup-main-container .email-form,
+.signup-main-container .password-form,
+.signup-main-container .password-confirm-form,
+.signup-main-container .nickname-form {
+  display: contents;
+}
+
 /* ─────────────────────────────────────────────
    1) 이메일 행
 ──────────────────────────────────────────── */
@@ -132,13 +139,6 @@
   box-sizing: border-box;
 }
 
-.signup-main-container .email-form .input-icon {
-  width: 24px;
-  height: 24px;
-  border: 1px solid red;    /* 빨간 테두리: 오류 표시 용도로 나중에 대체 가능 */
-  border-radius: 4px;
-  box-sizing: border-box;
-}
 
 /* ─────────────────────────────────────────────
    2) 비밀번호 행
@@ -163,13 +163,6 @@
   box-sizing: border-box;
 }
 
-.signup-main-container .password-form .input-icon {
-  width: 24px;
-  height: 24px;
-  border: 1px solid red;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
 
 /* ─────────────────────────────────────────────
    3) 비밀번호 확인 행
@@ -191,14 +184,6 @@
   border: 1px solid #cccccc;
   border-radius: 4px;
   font-size: 0.95rem;
-  box-sizing: border-box;
-}
-
-.signup-main-container .password-confirm-form .input-icon {
-  width: 24px;
-  height: 24px;
-  border: 1px solid red;
-  border-radius: 4px;
   box-sizing: border-box;
 }
 
@@ -225,14 +210,16 @@
   box-sizing: border-box;
 }
 
-.signup-main-container .nickname-form .input-icon {
-  width: 24px;
-  height: 24px;
-  border: 1px solid red;
-  border-radius: 4px;
-  box-sizing: border-box;
+/* error msg */
+.signup-main-container .error-message {
+  /* 2열에서 시작해서 4(=끝) 전까지, 즉 2·3열 전체를 덮음 */
+  grid-column: 2 / 4;
+  /* 디자인 */
+  color: #e53e3e;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  margin-top: 4px;
 }
-
 
 /* 이용약관을 보는 장소 */
 /* SignUpToggle 관련 CSS (./assets/css/SignUp.css 파일에 추가) */

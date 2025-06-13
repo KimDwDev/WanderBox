@@ -31,21 +31,21 @@ export const SignUpBottom = ({ setToggleId }) => {
         <div className = "part-checkbox-row">
           <input type = "checkbox" id = "signup-toggle-check_2" />
           <label htmlFor = "signup-toggle-check_2">회원가입 약관 동의</label>
-          <button className = "view-btn" onClick = {clickToggleBtn}>보기 &gt;</button>
+          <button className = "view-btn" onClick = {clickToggleBtn} type = "button">보기 &gt;</button>
         </div>
 
         {/* 개인정보 수집 및 이용 동의 */}
         <div className = "part-checkbox-row">
           <input type = "checkbox" id = "signup-toggle-check_3" />
           <label htmlFor = "signup-toggle-check_3">개인정보 수집 및 이용 동의</label>
-          <button className = "view-btn" onClick = {clickToggleBtn}>보기 &gt;</button>
+          <button className = "view-btn" onClick = {clickToggleBtn} type = "button">보기 &gt;</button>
         </div>
 
         {/* 추가 사항 */}
         <div className = "part-checkbox-row">
           <input type = "checkbox" id = "signup-toggle-check_choice" />
           <label htmlFor = "signup-toggle-check_choice">추가 사항</label>
-          <button className = "view-btn" onClick = {clickToggleBtn}>보기 &gt;</button>
+          <button className = "view-btn" onClick = {clickToggleBtn} type = "button">보기 &gt;</button>
         </div>
 
       </div>

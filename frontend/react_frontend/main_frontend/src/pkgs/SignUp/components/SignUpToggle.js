@@ -13,6 +13,7 @@ export const SignUpToggle = ({ toggleId, setToggleId }) => {
             <button 
             className = "toggle-top-x-button"
             onClick={() => setToggleId(undefined)}
+            type = "button"
             >x</button>
           </div>
 
