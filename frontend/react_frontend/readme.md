@@ -23,6 +23,7 @@
 
 4. 0613
   - SignUpToggle만들고 기존의 SignUpBottom을 토글로 변환
+  - all 체크를 누르면 다른 input이 모두 그걸 따라가도록 한다. 
 
 
 # 공부 

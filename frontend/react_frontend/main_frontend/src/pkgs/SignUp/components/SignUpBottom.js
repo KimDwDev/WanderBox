@@ -1,12 +1,19 @@
+import { useSignUpHookAllCheck } from "../hooks"
 
 
 export const SignUpBottom = () => {
+  
+  // 모두 체크가 되도록 해주는 함수
+  const { clickAllBotton } = useSignUpHookAllCheck()
+
+  // 보기 버튼을 클릭했을때 설명이 나오도록 하는 함수
+
   return (
     <div className = "signup-bottom-container">
 
       {/* 전체 동의 */}
       <div className = "checkbox-row">
-        <input type = "checkbox" id = "signup-toggle-check-all"/>
+        <input type = "checkbox" id = "signup-toggle-check-all" onChange = {clickAllBotton}/>
         <label htmlFor = "signup-toggle-check-all">전체 동의</label>
       </div>
 
