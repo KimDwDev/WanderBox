@@ -22,9 +22,10 @@
   - Footer 페이지 완성
 
 4. 0613
+
   - SignUpToggle만들고 기존의 SignUpBottom을 토글로 변환
   - all 체크를 누르면 다른 input이 모두 그걸 따라가도록 한다. 
-
+  - 토글 버튼을 클릭하면 토글이 보이도록 수정
 
 # 공부 
 

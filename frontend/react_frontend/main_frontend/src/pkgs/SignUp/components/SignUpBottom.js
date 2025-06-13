@@ -1,12 +1,13 @@
-import { useSignUpHookAllCheck } from "../hooks"
+import { useSignUpHookAllCheck, useSignUpHookGetToggle } from "../hooks"
 
 
-export const SignUpBottom = () => {
+export const SignUpBottom = ({ setToggleId }) => {
   
   // 모두 체크가 되도록 해주는 함수
   const { clickAllBotton } = useSignUpHookAllCheck()
 
   // 보기 버튼을 클릭했을때 설명이 나오도록 하는 함수
+  const { clickToggleBtn } = useSignUpHookGetToggle(setToggleId)
 
   return (
     <div className = "signup-bottom-container">
@@ -30,21 +31,21 @@ export const SignUpBottom = () => {
         <div className = "part-checkbox-row">
           <input type = "checkbox" id = "signup-toggle-check_2" />
           <label htmlFor = "signup-toggle-check_2">회원가입 약관 동의</label>
-          <button className = "view-btn">보기 &gt;</button>
+          <button className = "view-btn" onClick = {clickToggleBtn}>보기 &gt;</button>
         </div>
 
         {/* 개인정보 수집 및 이용 동의 */}
         <div className = "part-checkbox-row">
           <input type = "checkbox" id = "signup-toggle-check_3" />
           <label htmlFor = "signup-toggle-check_3">개인정보 수집 및 이용 동의</label>
-          <button className = "view-btn">보기 &gt;</button>
+          <button className = "view-btn" onClick = {clickToggleBtn}>보기 &gt;</button>
         </div>
 
         {/* 추가 사항 */}
         <div className = "part-checkbox-row">
           <input type = "checkbox" id = "signup-toggle-check_choice" />
           <label htmlFor = "signup-toggle-check_choice">추가 사항</label>
-          <button className = "view-btn">보기 &gt;</button>
+          <button className = "view-btn" onClick = {clickToggleBtn}>보기 &gt;</button>
         </div>
 
       </div>

@@ -336,3 +336,85 @@
 }
 
 
+/* 토글 박스 */
+/* 전체를 덮는 오버레이 */
+.signup-toggle-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); /* 반투명 검정 배경 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* 아주 높은 z-index로 맨 위에 띄움 */
+}
+
+.signup-toggle-container {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 1000px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+  animation: toggle-fadeIn 0.3s ease-in-out;
+}
+
+/* 맨 위 영역 */
+.signup-toggle-container .toggle-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* x 버튼 영역 */
+.signup-toggle-container .toggle-top-x-div {
+  flex-shrink: 0;
+}
+
+.signup-toggle-container .toggle-top-x-button {
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 설명 텍스트 영역 */
+.signup-toggle-container .toggle-top-text-div {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.signup-toggle-container .toggle-top-text-button {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* 중간 내용 영역 */
+.signup-toggle-container .toggle-mid {
+  margin-top: 12px;
+  padding-top: 8px;
+  border-top: 1px solid #eee;
+}
+
+.signup-toggle-container .toggle-mid-text {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #555;
+  white-space: pre-line;
+}
+
+/* 간단한 fadeIn 애니메이션 */
+@keyframes toggle-fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
