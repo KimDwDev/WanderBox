@@ -32,7 +32,16 @@ export const useMainLeftLoginHookForm = () => {
     const res_data = await login_class.MainLoginForm(data, setError)
 
     if (res_data) {
-      console.log(res_data)
+
+      // 체크를 했을경우 로컬에다가 저장을 한다
+      const check_find = document.querySelector(".main-left-login-main-container .login-save-id")
+
+      const checked_bool = check_find.querySelector("input").checked
+
+      if (checked_bool) {
+        localStorage.setItem("wanderbox_computer_number", res_data[0])
+      }
+
     }
 
   }
