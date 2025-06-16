@@ -5,6 +5,8 @@ import "./assets/css/MainLeftLogin.css"
 import { MainLeftLoginMain, MainLeftLoginSearchAndSignUpPannel, MainLeftLoginSimpleLogin } from "./components"
 
 export const MainLeftLogin = () => {
+  
+
   return (
     <div className = "main-left-login-container">
       
