@@ -13,7 +13,7 @@ export class AuthSignUpService {
   constructor (private database : DatabaseService, private config: ConfigService) {}
   private log = new Logger
 
-  async AuthSignUpMainService(dto : DtoAuthSignUpMain) : Promise<string> {
+  async AuthSignUpMainService(dto : DtoAuthSignUpMain) : Promise<{message:string}> {
 
     // 데이터 베이스 객체 가져오기
     const pool = this.database.GetClient()
@@ -67,6 +67,7 @@ export class AuthSignUpService {
 
       await client.query("COMMIT")
       this.log.log(message)
+
     } catch (err) {
 
       try {
@@ -80,7 +81,7 @@ export class AuthSignUpService {
       client.release()      
     }
 
-    return "회원가입 완료"
+    return { message : "회원가입 완료"}
   }
   
   // 이메일 확인

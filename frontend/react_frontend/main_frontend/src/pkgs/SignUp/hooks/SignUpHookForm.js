@@ -1,9 +1,11 @@
 import * as yup from "yup"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
-
+import { SignUpFunctionForm } from "../functions"
+import { useNavigate } from "react-router-dom"
 
 export const useSignUpForm = () => {
+    const navigate = useNavigate()
 
     const schema = yup.object({
       email : yup
@@ -28,12 +30,43 @@ export const useSignUpForm = () => {
       .required("닉네임을 입력해주세요.")
     })
     
-    const { register, handleSubmit, formState : { errors } } = useForm({
+    const { register, handleSubmit, formState : { errors }, setError } = useForm({
       resolver : yupResolver(schema)
     })
   
-    const onSubmit = (data) => {
-      console.log(data)
+    const onSubmit = async (data) => {
+      try {
+        // 필수 사항을 확인 
+        const terms = document.querySelectorAll(".part-checkbox-div .part-checkbox-row")
+
+        for ( let i = 0; i < 3; i ++ ) {
+
+          const term = terms[i].querySelector("input").checked
+
+          if (term === false) {
+            alert("필수 사항은 모두 체크해주셔야 합니다.")
+            throw new Error("필수 사항은 모두 체크해주셔야 합니다.")
+          }
+
+        }
+        
+        data["term_agree_3"] = terms[3].querySelector("input").checked
+        
+        // 초기설정
+        const backend_url = process.env.REACT_APP_BACKEND_NODE_HOST
+        const url = `${backend_url}/auth/signup/main`
+        const signup_term_class = new SignUpFunctionForm(url)
+
+        // 회원가입 실행
+        const res_datas = await signup_term_class.SignUpFormMainFunc(data, setError)
+
+        alert(res_datas["message"])
+  
+        navigate("/")
+
+      } catch (err) {
+        throw err
+      }
     }
 
     return { register, handleSubmit, errors, onSubmit }

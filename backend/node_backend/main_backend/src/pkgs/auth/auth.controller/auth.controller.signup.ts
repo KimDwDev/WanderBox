@@ -14,7 +14,7 @@ export class AuthSignUpController {
     })
   )
   @Post("main")
-  async AuthSignUpMainController(@Body() dto : DtoAuthSignUpMain) : Promise<string> {
+  async AuthSignUpMainController(@Body() dto : DtoAuthSignUpMain) : Promise<{message : string}> {
     return this.main.AuthSignUpMainService(dto)
   }
 

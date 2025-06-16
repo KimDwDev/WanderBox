@@ -29,6 +29,11 @@
   - 기존의 form에 button에 타입을 지정해서 button을 누르더라도 submit가 안되도록 했음
   - submit에 기본적인 구성을 갖춤
 
+5. 0616
+
+  - SignUpForm을 완성시키고 회원가입 로직을 완성 시킴
+  
+
 # 공부 
 
 
