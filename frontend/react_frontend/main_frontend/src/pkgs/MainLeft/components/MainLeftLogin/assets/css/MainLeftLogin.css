@@ -27,6 +27,7 @@
   flex-direction: column;
   align-items: stretch;
   gap: 16px; /* 하위 요소 간 간격 */
+  min-width: 0;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -57,13 +58,14 @@
   display: flex;
   flex-direction: column;
   gap: 12px; /* 입력란 간격 */
+  min-width: 0;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    4) 이메일 입력 박스: email-div-box
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .main-left-login-main-container .email-div-box {
-  width: 100%;
+  min-width: 0;
 }
 
 .main-left-login-main-container .email-input {
@@ -81,7 +83,7 @@
    5) 비밀번호 입력 박스: password-div-box
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .main-left-login-main-container .password-div-box {
-  width: 100%;
+  min-width: 0;
 }
 
 .main-left-login-main-container .password-input {
@@ -114,6 +116,32 @@
 .main-left-login-main-container .login-button:hover {
   background-color: #b3b3b3; /* 호버 시 살짝 진하게 */
 }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   7) 에러 메시지: error-msg
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.main-left-login-main-container .error-msg {
+  /* 기존 스타일 유지 */
+  margin-top: 4px;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  color: #e74c3c;
+
+  /* 여기 추가 */
+  width: 100%;            /* 부모 폭 꽉 채우기 */
+  display: block;         /* block 레벨로 */
+  box-sizing: border-box; /* 패딩/보더 포함 계산 */
+
+  /* 줄 바꿈 강제 */
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* p 태그를 직접 지정해도 좋습니다. */
+.main-left-login-main-container .error-msg p {
+  margin: 0;
+}
+
 
 /* 이메일 비밀번호 찾기 회원가입 버튼 */
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

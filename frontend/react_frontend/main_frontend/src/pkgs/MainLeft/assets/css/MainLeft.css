@@ -1,22 +1,44 @@
-.navbarleft-container {
-  /*  1) 고정 너비 */
-  width: 240px;                     
-
-  /* 높이는 부모(.app-container)와 같아집니다. (별도 설정 생략 가능) */
-  /* height: 100%; */
-
-  /*  2) 배경색 (Mid와 동일하게) */
-  background-color: #005f7f;        
-
-  /*  3) 내부 여백 */
-  padding: 16px;                    
-
-  /*  4) 박스 크기 계산 시 padding 포함 */
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   메인 사이드바 컨테이너: 부드러운 스타일링
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.mainleft-container {
+  /* 레이아웃 */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 16px;
   box-sizing: border-box;
 
-  /*  5) 콘텐츠가 길어지면 세로 스크롤 */
-  overflow-y: auto;                 
+  /* 배경 & 모서리 */
+  background-color: #005f7f;
+  border-radius: 8px;
 
-  /*  6) 텍스트/아이콘 색상 */
-  color: #ffffff;                   
+  /* 부드러운 그림자 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  /* 스크롤 */
+  overflow-y: auto;
+  scroll-behavior: smooth;       /* 스크롤 부드럽게 */
+  scrollbar-gutter: stable;      /* 언제나 스크롤바 자리 확보 */
+
+  /* 호버 시 살짝 밝아지도록 */
+  transition: background-color 0.3s ease;
+}
+.mainleft-container:hover {
+  background-color: #00688b;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   스크롤바 커스터마이징 (WebKit 계열)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.mainleft-container::-webkit-scrollbar {
+  width: 6px;
+}
+.mainleft-container::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+.mainleft-container::-webkit-scrollbar-track {
+  background: transparent;
 }

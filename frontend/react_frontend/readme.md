@@ -33,6 +33,7 @@
 
   - SignUpForm을 완성시키고 회원가입 로직을 완성 시킴
   - Context를 이용해서 전체적으로 사용 가능하도록 추가함
+  - MainLeft의 css를 수정
 
 # 공부 
 
