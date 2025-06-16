@@ -1,9 +1,9 @@
 // 모듈들
-import { useNavbarLeftLoginHookGoSignUpBtn } from "../hooks"
+import { useMainLeftLoginHookGoSignUpBtn } from "../hooks"
 
 export const MainLeftLoginSearchAndSignUpPannel = () => {
 
-  const { clickSignUpBtnHook } = useNavbarLeftLoginHookGoSignUpBtn()
+  const { clickSignUpBtnHook } = useMainLeftLoginHookGoSignUpBtn()
 
   return (
     <div className = "main-left-login-searchandsignuppannel-container">

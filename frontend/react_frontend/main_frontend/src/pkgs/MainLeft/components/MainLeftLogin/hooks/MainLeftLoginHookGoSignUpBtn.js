@@ -1,7 +1,7 @@
 import { useCallback } from "react"
 import { useNavigate } from "react-router-dom"
 
-export const useNavbarLeftLoginHookGoSignUpBtn = () => {
+export const useMainLeftLoginHookGoSignUpBtn = () => {
   const navigate = useNavigate()
 
   const clickSignUpBtnHook = useCallback((event) => {

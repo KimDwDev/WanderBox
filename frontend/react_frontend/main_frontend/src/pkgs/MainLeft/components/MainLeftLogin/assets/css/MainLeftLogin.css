@@ -123,7 +123,7 @@
 .main-left-login-main-container .error-msg {
   /* 기존 스타일 유지 */
   margin-top: 4px;
-  font-size: 0.875rem;
+  font-size: 12px;
   line-height: 1.2;
   color: #e74c3c;
 
