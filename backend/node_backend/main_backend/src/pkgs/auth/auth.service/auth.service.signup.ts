@@ -7,6 +7,7 @@ import * as argon from "argon2"
 // 사용하는 모듈
 import { DatabaseService } from "src/database";
 import { DtoAuthSignUpMain } from "src/dtos";
+import { UUID } from "crypto";
 
 @Injectable()
 export class AuthSignUpService {
@@ -23,12 +24,22 @@ export class AuthSignUpService {
     try {
       // 트랙잭션
       await client.query("BEGIN")
+      
+      // 개선사항: 인덱스를 확인하고 빠르게 데이터를 찾는 로직으로 변환
+      const email_bool : { id: UUID, provider_id : string, provider : string }[] = await this.AuthSignUpMainCheckEmailFunc(client,dto.email)
+
+      // 다른 구글이나 애플로 로그인한 흔적이 있는지 확인하는 로직
+      if ( email_bool && email_bool.length > 0 && email_bool[0].provider_id ) {
+        throw new HttpException({
+          message : `이미 ${email_bool[0].provider} 계정으로 가입된 회원 정보가 있습니다.`,
+          status : HttpStatus.FAILED_DEPENDENCY,
+        }, HttpStatus.FAILED_DEPENDENCY, {
+          cause : `${email_bool[0].provider} 계정 가입 이력 확인됨`
+        })
+      }
 
       // 이메일 중복성 확인
-      // 개선사항: 인덱스를 확인하고 빠르게 데이터를 찾는 로직으로 변환
-      const email_bool : boolean = await this.AuthSignUpMainCheckEmailFunc(client,dto.email)
-
-      if ( !email_bool ) {
+      if ( email_bool.length > 0 ) {
         throw new HttpException({
           message : "이미 존재하는 이메일 입니다.",
           status : HttpStatus.EXPECTATION_FAILED,
@@ -85,21 +96,17 @@ export class AuthSignUpService {
   }
   
   // 이메일 확인
-  async AuthSignUpMainCheckEmailFunc(client : PoolClient, email : string) : Promise<boolean> {
+  async AuthSignUpMainCheckEmailFunc(client : PoolClient, email : string) : Promise<{ id : UUID, provider_id : string, provider : string }[]> {
 
-    const {rows : existing} = await client.query<{id:number}>(
+    const {rows} = await client.query<{id:number}>(
       `
-      SELECT id FROM ${this.config.get<string>("NEST_APP_DATABASE_USER_TABLE")}
+      SELECT id, provider_id, provider FROM ${this.config.get<string>("NEST_APP_DATABASE_USER_TABLE")}
       WHERE email = $1
       `,
       [email]
     );
 
-    if ( existing.length > 0 ) {
-      return false
-    }
-
-    return true
+    return rows
   }
 
   // 닉네임 확인
