@@ -37,6 +37,12 @@ export class SignUpFunctionForm {
           message : "중복된 닉네임 입니다."
         })
         throw new Error("닉네임이 중복되었습니다.")
+      } else if (response.status === 424) {
+        setError("email", {
+          type : "manual",
+          message : "이미 구글 또는 애플 계정으로 가입된 회원 정보가 있습니다."
+        })
+        throw new Error("이미 구글 또는 애플 계정으로 가입된 회원 정보가 있습니다.")
       } else if (response.status === 500) {
         alert("서버에 오류가 발생했습니다.")
         throw new Error("서버에 오류가 발생했습니다.")
