@@ -22,11 +22,12 @@ export class AuthLoginService {
     const client : PoolClient = await pool.connect()
 
     // 초기 설정
-    const user : {user_id : UUID, email : string, password : string, nickname : string} = {
+    const user : {user_id : UUID, email : string, password : string, nickname : string, provider : string} = {
       user_id : uuid.NIL,
       email : "",
       password : "",
-      nickname : ""
+      nickname : "",
+      provider : "",
     }
 
     try {
@@ -34,9 +35,20 @@ export class AuthLoginService {
       // 트랜젝션 관리
       await client.query("BEGIN")
 
-      // 이메일 확인
+      // 이메일 로직 확인
       const email_bool = await this.AuthLoginMainCheckEmailFunc(client, dto.email, user)
 
+      // 이 이메일이 구글이나 애플로 로그인한것인지 확인하는 로직 
+      if ( user && user.provider ) {
+        throw new HttpException({
+          status : HttpStatus.EXPECTATION_FAILED,
+          message : `해당 계정은 ${user.provider} 로그인으로만 이용 가능합니다.`
+        }, HttpStatus.EXPECTATION_FAILED, {
+          cause : `${user.provider} 로그인이 필요함`
+        })
+      }
+
+      // 이메일 확인
       if (!email_bool) {
         throw new HttpException({
           mesaage : "이메일을 다시 확인해주시길 바랍니다.",
@@ -82,10 +94,10 @@ export class AuthLoginService {
   }
 
   // 이메일 로직 함수
-  async AuthLoginMainCheckEmailFunc(client : PoolClient, email : string, user : { user_id : UUID,  email : string, password : string, nickname : string }) : Promise<boolean> {
+  async AuthLoginMainCheckEmailFunc(client : PoolClient, email : string, user : { user_id : UUID,  email : string, password : string, nickname : string, provider: string }) : Promise<boolean> {
 
-    const { rows } = await client.query<{ user_id : UUID, email : string, hash : string, nickname : string }>(`
-      SELECT user_id, email, hash, nickname FROM ${this.config.get<string>("NEST_APP_DATABASE_USER_TABLE")}
+    const { rows } = await client.query<{ user_id : UUID, email : string, hash : string, nickname : string, provider : string }>(`
+      SELECT user_id, email, hash, nickname, provider FROM ${this.config.get<string>("NEST_APP_DATABASE_USER_TABLE")}
       WHERE email = $1
       `, [ email ])
 
@@ -97,6 +109,7 @@ export class AuthLoginService {
     user.email = rows[0].email
     user.password = String(rows[0].hash)
     user.nickname = rows[0].nickname
+    user.provider = rows[0].provider
 
     return true
   }
