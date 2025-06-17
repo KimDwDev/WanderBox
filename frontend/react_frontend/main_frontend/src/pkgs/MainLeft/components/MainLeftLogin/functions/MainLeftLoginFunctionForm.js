@@ -37,6 +37,12 @@ export class MainLeftLoginFunctionForm{
             message : "비밀번호가 일치하지 않습니다.",
           })
           throw new Error("비밀번호가 일치하지 않습니다.")
+        } else if (response.status === 417) {
+          setError("email", {
+            type : "manual",
+            message : "해당 계정은 구글 또는 애플 로그인으로만 이용 가능합니다.",
+          })
+          throw new Error("해당 계정은 구글 또는 애플 로그인으로만 이용 가능합니다.")
         } else if (response.status === 500) {
           alert("서버에 오류가 발생했습니다.")
           throw new Error("서버에 오류가 발생했습니다.")
