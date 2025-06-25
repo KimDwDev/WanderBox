@@ -23,6 +23,11 @@ export class AuthSignUpController {
     return "회원가입 완료(구글)"
   }
 
+  @Post("google/redirect")
+  async AuthSignUpGoogleRedirectController() {
+
+  }
+
   @Post("apple")
   async AuthSignUpAppleController() : Promise<string> {
     return "회원가입 완료(애플)"

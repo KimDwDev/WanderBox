@@ -1,9 +1,13 @@
+// 설치
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import * as CookieParser from "cookie-parser";
 import { ConfigModule, ConfigService} from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
+
+// 정보
 import { AuthModule } from './pkgs';
 import { DatabaseModule } from './database';
-import { JwtModule } from '@nestjs/jwt';
+import { SecurityModule } from './security/security.module';
 
 @Module({
   imports: [
@@ -19,6 +23,7 @@ import { JwtModule } from '@nestjs/jwt';
 
     // 글로벌 모델들
     DatabaseModule,
+    SecurityModule,
 
     // 모듈들
     AuthModule,
