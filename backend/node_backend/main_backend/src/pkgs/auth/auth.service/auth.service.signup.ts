@@ -17,7 +17,7 @@ export class AuthSignUpService {
   async AuthSignUpMainService(dto : DtoAuthSignUpMain) : Promise<{message:string}> {
 
     // 데이터 베이스 객체 가져오기
-    const pool = this.database.GetClient()
+    const pool : Pool = this.database.GetClient()
     const client : PoolClient = await pool.connect()
 
     // 회원가입 로직

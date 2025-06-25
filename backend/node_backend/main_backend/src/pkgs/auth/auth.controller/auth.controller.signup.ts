@@ -1,6 +1,7 @@
-import { Body, Controller, Post, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Get, Post, UseGuards, UsePipes, ValidationPipe } from "@nestjs/common";
 import { AuthSignUpService } from "../auth.service";
 import { DtoAuthSignUpMain } from "src/dtos";
+import { GoogleSignUpGuard } from "src/security/guard";
 
 
 @Controller("auth/signup")
@@ -18,14 +19,16 @@ export class AuthSignUpController {
     return this.main.AuthSignUpMainService(dto)
   }
 
-  @Post("google")
+  @UseGuards(GoogleSignUpGuard)
+  @Get("google")
   async AuthSignUpGoogleController() : Promise<string> {
     return "회원가입 완료(구글)"
   }
 
-  @Post("google/redirect")
+  @UseGuards(GoogleSignUpGuard)
+  @Get("google/redirect")
   async AuthSignUpGoogleRedirectController() {
-
+    return "안녕"
   }
 
   @Post("apple")

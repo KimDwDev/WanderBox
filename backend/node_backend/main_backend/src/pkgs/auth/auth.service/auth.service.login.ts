@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable, Logger } from "@nestjs/common";
 import { DatabaseService } from "src/database";
 import { DtoAuthLoginMain, Payload, Sub } from "src/dtos";
-import { PoolClient } from "pg"
+import { Pool, PoolClient } from "pg"
 import { ConfigService } from "@nestjs/config";
 
 import * as argon from "argon2"
@@ -18,7 +18,7 @@ export class AuthLoginService {
   async AuthLoginMainService(dto : DtoAuthLoginMain) : Promise<string[]> {
 
     // 데이터 베이스 꺼내기 
-    const pool = this.database.GetClient()
+    const pool : Pool = this.database.GetClient()
     const client : PoolClient = await pool.connect()
 
     // 초기 설정
