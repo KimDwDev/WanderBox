@@ -6,7 +6,7 @@ import * as argon from "argon2"
 
 // 사용하는 모듈
 import { DatabaseService } from "src/database";
-import { DtoAuthSignUpMain } from "src/dtos";
+import { DtoAuthSignUpGoogle, DtoAuthSignUpMain } from "src/dtos";
 import { UUID } from "crypto";
 
 @Injectable()
@@ -141,6 +141,12 @@ export class AuthSignUpService {
     )
 
     return "데이터 베이스에 회원정보 저장 완료"
+  }
+
+  // 구글을 이용한 회원가입 함수
+  async AuthSignUpGoogleRedirectService(googleDto : DtoAuthSignUpGoogle) : Promise<string> {
+
+    return "회원가입 되었습니다."
   }
 
 }

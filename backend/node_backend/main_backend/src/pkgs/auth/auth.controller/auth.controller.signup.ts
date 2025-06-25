@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post, UseGuards, UsePipes, ValidationPipe } from "@nestjs/common";
+import { Body, Controller, Get, Post, Req, UseGuards, UsePipes, ValidationPipe } from "@nestjs/common";
 import { AuthSignUpService } from "../auth.service";
-import { DtoAuthSignUpMain } from "src/dtos";
+import { DtoAuthSignUpGoogle, DtoAuthSignUpMain } from "src/dtos";
 import { GoogleSignUpGuard } from "src/security/guard";
+import { Request, request } from "express";
 
 
 @Controller("auth/signup")
@@ -19,16 +20,21 @@ export class AuthSignUpController {
     return this.main.AuthSignUpMainService(dto)
   }
 
+  // google을 이용해서 회원가입 하고 싶을때
   @UseGuards(GoogleSignUpGuard)
   @Get("google")
   async AuthSignUpGoogleController() : Promise<string> {
     return "회원가입 완료(구글)"
   }
-
+  
   @UseGuards(GoogleSignUpGuard)
   @Get("google/redirect")
-  async AuthSignUpGoogleRedirectController() {
-    return "안녕"
+  async AuthSignUpGoogleRedirectController(@Req() req : Request) : Promise<string> {
+    const googleSignUpDto = new DtoAuthSignUpGoogle;
+    googleSignUpDto.id = req["wanderbox_data"]["id"];
+    googleSignUpDto.email = req["wanderbox_data"]["email"];
+    googleSignUpDto.provider = req["wanderbox_data"]["provider"];
+    return this.main.AuthSignUpGoogleRedirectService(googleSignUpDto);
   }
 
   @Post("apple")
